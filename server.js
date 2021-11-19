@@ -18,10 +18,6 @@ const db = knex({
     }
 })
 
-db.select('*').from('users').then(data => {
-    console.log(data)
-}).catch(console.log);
-
 const app = express();
 
 app.use(express.json());
@@ -31,14 +27,10 @@ app.listen(3000, () => {
     console.log('app running on port 3000');
 })
 
-app.get('/' , (req, res) => {
-    res.json(database.users);
-})
+app.post('/signin', signin.handleSignIn(db, bcrypt))
 
-app.post('/signin', (req, res) => signin.handleSignIn(req, res, db, bcrypt))
+app.post('/register', register.handleRegister(db, bcrypt))
 
-app.post('/register', (req, res) => register.handleRegister(req, res, db, bcrypt))
+app.get('/profile/:id', profile.handleProfileGet(db))
 
-app.get('/profile/:id', (req, res) => profile.handleProfileGet(req, res, db))
-
-app.put('/image', (req, res) => image.handleImage(req, res, db))
+app.put('/image', image.handleImage(db))
