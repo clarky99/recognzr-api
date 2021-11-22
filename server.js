@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 const express = require('express');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
@@ -16,7 +16,7 @@ const db = knex({
         // password: process.env.DB_SECRET,
         // database: process.env.DB_NAME,
         connectionString: process.env.DATABASE_URL,
-        ssl: false
+        ssl: true
     }
 })
 
