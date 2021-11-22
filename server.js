@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(cors());
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log(`app running on port ${proc.env.PORT}`)
+    console.log(`app running on port ${process.env.PORT}`)
 })
 
 app.post('/signin', signin.handleSignIn(db, bcrypt))
