@@ -11,6 +11,7 @@ const handleProfileGet = (db) => (req, res) => {
                 res.status(404).json('Not found')
             }
         })
+    .catch(res.status(400).json('Not found.'))
 }
 
 module.exports = {
